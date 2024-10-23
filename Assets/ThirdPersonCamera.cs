@@ -8,6 +8,7 @@ public class ThirdPersonCamera : MonoBehaviour
     public Vector3 offset;
     public Transform target;
     [Range (0, 1)] public float lerpValue;
+    public float sensibilidad;
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +20,7 @@ public class ThirdPersonCamera : MonoBehaviour
     void LateUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.position + offset, lerpValue);
+        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * sensibilidad, Vector3.up) * offset;
+        transform.LookAt(target);
     }
 }
