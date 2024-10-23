@@ -214,7 +214,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 25.090292
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -240,11 +240,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254591593}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.17837504, y: -0, z: -0, w: 0.9839626}
+  m_LocalPosition: {x: -0.2993102, y: 7.68, z: -16.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+<<<<<<< HEAD
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &254591597
@@ -261,6 +262,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
   lerpValue: 1
+=======
+  m_Father: {fileID: 909320379}
+  m_LocalEulerAnglesHint: {x: 20.55, y: 0, z: 0}
+>>>>>>> Pablo
 --- !u!1001 &909320378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,14 +318,105 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: be0ac1309048a164d98802e40a79097f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 254591596}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1115944208}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1115944207}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1115944206}
   m_SourcePrefab: {fileID: 100100000, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
 --- !u!4 &909320379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
+  m_PrefabInstance: {fileID: 909320378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1115944205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
+  m_PrefabInstance: {fileID: 909320378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1115944206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115944205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f3ebd78a73cd04facb87ead0a35ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runSpeed: 7
+  rotatonSpeed: 230
+  animator: {fileID: 1115944209}
+--- !u!136 &1115944207
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115944205}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35535502
+  m_Height: 1.8678713
+  m_Direction: 1
+  m_Center: {x: 0.0040745735, y: 0.9228772, z: 0.0061118603}
+--- !u!54 &1115944208
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115944205}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!95 &1115944209 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
   m_PrefabInstance: {fileID: 909320378}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1313139195
@@ -527,7 +623,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 254591596}
   - {fileID: 1313139197}
   - {fileID: 1614955136}
   - {fileID: 45859983}
