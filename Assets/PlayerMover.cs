@@ -11,6 +11,17 @@ public class PlayerMover : MonoBehaviour
 
     private float x, y;
 
+    public Rigidbody rb;
+    public float jumpHeight = 3;
+
+    public Transform groundCheck;
+    public float groundDistance = 0.1f;
+    public LayerMask groundMask;
+
+    bool isGrounded;
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -22,5 +33,23 @@ public class PlayerMover : MonoBehaviour
 
         animator.SetFloat("VelX", x);
         animator.SetFloat("VelY",y);
+
+
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (Input.GetKeyDown("space")&&isGrounded)
+        {
+            animator.Play("Jump");
+            Invoke("Jump", 1f);
+           
+        }
+
+
     }
+    public void Jump() {
+
+        rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+
+    }
+
 }

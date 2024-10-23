@@ -308,6 +308,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 254591596}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1980114787}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a3f59873e0878d74eb436aefc3e127a9, type: 3}
       insertIndex: -1
@@ -344,6 +347,13 @@ MonoBehaviour:
   runSpeed: 7
   rotatonSpeed: 230
   animator: {fileID: 1115944209}
+  rb: {fileID: 1115944208}
+  jumpHeight: 2
+  groundCheck: {fileID: 1980114787}
+  groundDistance: 0.1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!136 &1115944207
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -505,7 +515,7 @@ GameObject:
   - component: {fileID: 1614955135}
   - component: {fileID: 1614955134}
   - component: {fileID: 1614955133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,6 +608,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1980114786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1980114787}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1980114787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980114786}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 909320379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2057499238
 GameObject:
