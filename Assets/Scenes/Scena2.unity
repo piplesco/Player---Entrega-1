@@ -1706,10 +1706,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 7
-  rotatonSpeed: 230
+  walkSpeed: 3
+  rotationSpeed: 230
   animator: {fileID: 1115944209}
   rb: {fileID: 1115944208}
-  jumpHeight: 2
+  jumpHeight: 4
   groundCheck: {fileID: 1980114787}
   groundDistance: 0.1
   groundMask:
