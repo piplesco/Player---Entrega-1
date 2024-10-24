@@ -25,14 +25,14 @@ public class NewBehaviourScript : MonoBehaviour
         transform.Rotate(direction*speed);
         }
 
-        if(Input.GetButtonDown("Fire1") && puedeAbrir == true && abrir == false){
+        if(Input.GetKeyDown("f") && puedeAbrir == true && abrir == false){
         
         angle = 80;
         direction = Vector3.up;
         abrir = true;
         
         }
-        else if(Input.GetButtonDown("Fire1") && puedeAbrir == true && abrir == true){
+        else if(Input.GetKeyDown("f") && puedeAbrir == true && abrir == true){
         
         angle = 0;
         direction = Vector3.down;
