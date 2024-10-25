@@ -2,29 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraSwitcher : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
-    public Camera TPcamera; // Cámara en tercera persona
-    public Camera PPcamera; // Cámara en primera persona
+    public static CameraManager Instance;
+    public GameObject firstPersonCamera;
+    public GameObject thirdPersonCamera;
 
-    void Start()
+    void Awake()
     {
-        // Al inicio, activamos solo la cámara en tercera persona
-        PPcamera.enabled = false;
+        if (Instance == null)
+            Instance = this;
     }
 
-    void Update()
+    public void SwitchCamera(bool isFirstPerson)
     {
-        // Cambiar de cámara al presionar la tecla "C"
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ToggleCameras();
-        }
-    }
-
-    void ToggleCameras()
-    {
-        TPcamera.enabled = !TPcamera.enabled;
-        PPcamera.enabled = !PPcamera.enabled;
+        firstPersonCamera.SetActive(isFirstPerson);
+        thirdPersonCamera.SetActive(!isFirstPerson);
     }
 }
+

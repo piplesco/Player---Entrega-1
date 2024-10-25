@@ -4,23 +4,45 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
+    public Transform target;        // Referencia al jugador
+    public Vector3 offset = new Vector3(0, 2, -4); // Offset inicial de la cámara
+    public float sensibilidadX = 4f; // Sensibilidad horizontal de la cámara
+    public float sensibilidadY = 2f; // Sensibilidad vertical de la cámara
+    public float minY = -20f;        // Límite inferior de la rotación vertical
+    public float maxY = 60f;         // Límite superior de la rotación vertical
+    public float lerpValue = 0.1f;   // Suavidad del movimiento de seguimiento
 
-    public Vector3 offset;
-    public Transform target;
-    [Range (0, 1)] public float lerpValue;
-    public float sensibilidad;
+    private float rotX;
+    private float rotY;
 
-    // Start is called before the first frame update
     void Start()
     {
-       
+        Vector3 angles = transform.eulerAngles;
+        rotX = angles.y;
+        rotY = angles.x;
+
+        // Bloquea el cursor en el centro de la pantalla y lo oculta
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position + offset, lerpValue);
-        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * sensibilidad, Vector3.up) * offset;
-        transform.LookAt(target);
+        // Obtener entrada del ratón
+        rotX += Input.GetAxis("Mouse X") * sensibilidadX;
+        rotY -= Input.GetAxis("Mouse Y") * sensibilidadY;
+
+        // Limitar la rotación vertical
+        rotY = Mathf.Clamp(rotY, minY, maxY);
+
+        // Crear la rotación deseada basada en la entrada del ratón
+        Quaternion rotation = Quaternion.Euler(rotY, rotX, 0);
+
+        // Calcular la posición de la cámara aplicando el offset
+        Vector3 desiredPosition = target.position + rotation * offset;
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, lerpValue);
+
+        // Hacer que la cámara mire hacia el objetivo
+        transform.LookAt(target.position + Vector3.up * offset.y);
     }
 }
+

@@ -4,87 +4,94 @@ using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
 {
-    public float runSpeed = 7;   // Velocidad al correr
-    public float walkSpeed = 3;  // Velocidad al caminar
-    public float rotationSpeed = 230;
-
+    public float runSpeed = 7f;
+    public float walkSpeed = 3f;
     public Animator animator;
-    private float x, y;
-    private float currentSpeed;  // Velocidad actual
-
     public Rigidbody rb;
-    public float jumpHeight = 3;
+
+    private float currentSpeed;
+    private Vector3 moveDirection;
+    private bool isGrounded;
+    private bool isFirstPerson = false; // Nueva variable para alternar entre cámaras
 
     public Transform groundCheck;
     public float groundDistance = 0.1f;
     public LayerMask groundMask;
-
-    bool isGrounded;
+    public float jumpHeight = 3f;
+    public float turnSmoothTime = 0.1f;
+    private float turnSmoothVelocity;
 
     void Start()
     {
         rb.isKinematic = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Verificar si el personaje está en el suelo
+        // Cambiar entre primera y tercera persona al presionar la tecla C
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            isFirstPerson = !isFirstPerson;
+            CameraManager.Instance.SwitchCamera(isFirstPerson); // Activar/desactivar cámaras
+        }
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        // Movimiento horizontal basado en Input
-        x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+        moveDirection = new Vector3(x, 0, y).normalized;
 
-        // Alternar entre caminar y correr dependiendo de si el Shift está presionado
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            currentSpeed = walkSpeed;  // Caminar
-            animator.speed = 0.5f;     // Ajustar la velocidad de la animación a la mitad para caminar más lento
+            currentSpeed = walkSpeed;
+            animator.speed = 0.5f;
         }
         else
         {
-            currentSpeed = runSpeed;  // Correr
-            animator.speed = 1.0f;    // Velocidad normal de la animación al correr
+            currentSpeed = runSpeed;
+            animator.speed = 1.0f;
         }
 
-        // Rotar el personaje
-        transform.Rotate(0, x * Time.deltaTime * rotationSpeed, 0);
+        if (moveDirection.magnitude >= 0.1f)
+        {
+            if (!isFirstPerson)
+            {
+                // Rotación en tercera persona
+                float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0, angle, 0);
 
-        // Movimiento horizontal con Rigidbody
-        Vector3 moveDirection = transform.forward * y * currentSpeed * Time.deltaTime;
-        rb.MovePosition(rb.position + moveDirection);
+                Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+                rb.MovePosition(rb.position + moveDir * currentSpeed * Time.deltaTime);
+            }
+            else
+            {
+                // Movimiento en primera persona, sin cambiar la rotación
+                Vector3 moveDir = transform.right * x + transform.forward * y;
+                rb.MovePosition(rb.position + moveDir * currentSpeed * Time.deltaTime);
+            }
+        }
 
-        // Actualizar parámetros de animación
+        // Animaciones de movimiento
         animator.SetFloat("VelX", x);
         animator.SetFloat("VelY", y);
 
-        // Verificar si se ha presionado la tecla de salto y si está en el suelo
-        if (Input.GetKeyDown("space") && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            // Iniciar la animación de salto y el salto físico al mismo tiempo
-            animator.Play("Jump");
-            Jump(); // Ejecutar el salto inmediatamente
+            Jump();
         }
     }
 
-    // Función que controla el salto
-    public void Jump()
+    void Jump()
     {
-        // Añadir fuerza hacia arriba (salto vertical)
-        rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-    }
-
-    // Detectar cuando el personaje toca el suelo
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            // Restaurar la velocidad de la animación al valor normal
-            animator.speed = 1.0f;
-        }
+        rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+        animator.Play("Jump");
     }
 }
+
+
+
+
 
 
 
