@@ -18,8 +18,7 @@ public class MenuController : MonoBehaviour
         // Inicializar los elementos de la UI y esconder textos secundarios
         controlsText.gameObject.SetActive(false);
         creditsText.gameObject.SetActive(false);
-        returnText.gameObject.SetActive(false);
-        closeText.gameObject.SetActive(false);
+
         menuPanel.SetActive(false);
 
         // Asegurar que el cursor esté oculto inicialmente
@@ -53,7 +52,7 @@ public class MenuController : MonoBehaviour
     {
         isMenuOpen = !isMenuOpen;
         menuPanel.SetActive(isMenuOpen);
-        Time.timeScale = isMenuOpen ? 0 : 1;
+        Time.timeScale = isMenuOpen ? 0 : 0;
 
         if (isMenuOpen)
         {
