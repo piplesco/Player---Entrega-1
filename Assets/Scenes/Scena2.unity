@@ -1121,7 +1121,7 @@ GameObject:
   - component: {fileID: 254591594}
   - component: {fileID: 254591597}
   m_Layer: 0
-  m_Name: TPcamera
+  m_Name: TerceraPersona
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2577,8 +2577,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 1930015278}
+  buttonPanel: {fileID: 0}
   controlsText: {fileID: 1794818416}
   creditsText: {fileID: 1561501960}
+  returnText: {fileID: 0}
+  closeText: {fileID: 0}
 --- !u!4 &666552161
 Transform:
   m_ObjectHideFlags: 0
@@ -4109,8 +4112,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  jumpHeight: 2
-  turnSmoothTime: 0.16
+  jumpHeight: 3
+  turnSmoothTime: 0.1
 --- !u!136 &1115944207
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6260,7 +6263,7 @@ GameObject:
   - component: {fileID: 1731335233}
   - component: {fileID: 1731335235}
   m_Layer: 0
-  m_Name: PPcamera
+  m_Name: PrimeraPersona
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

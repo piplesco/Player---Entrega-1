@@ -12,7 +12,7 @@ public class PlayerMover : MonoBehaviour
     private float currentSpeed;
     private Vector3 moveDirection;
     private bool isGrounded;
-    private bool isFirstPerson = false; // Nueva variable para alternar entre cámaras
+    private bool isFirstPerson = false;
 
     public Transform groundCheck;
     public float groundDistance = 0.1f;
@@ -24,6 +24,7 @@ public class PlayerMover : MonoBehaviour
     void Start()
     {
         rb.isKinematic = false;
+        CameraManager.Instance.SwitchCamera(isFirstPerson); // Iniciar en tercera persona
     }
 
     void Update()
@@ -32,7 +33,7 @@ public class PlayerMover : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             isFirstPerson = !isFirstPerson;
-            CameraManager.Instance.SwitchCamera(isFirstPerson); // Activar/desactivar cámaras
+            CameraManager.Instance.SwitchCamera(isFirstPerson); // Cambiar cámara
         }
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -66,7 +67,7 @@ public class PlayerMover : MonoBehaviour
             }
             else
             {
-                // Movimiento en primera persona, sin cambiar la rotación
+                // Movimiento en primera persona, solo lineal sin rotación
                 Vector3 moveDir = transform.right * x + transform.forward * y;
                 rb.MovePosition(rb.position + moveDir * currentSpeed * Time.deltaTime);
             }
@@ -88,6 +89,9 @@ public class PlayerMover : MonoBehaviour
         animator.Play("Jump");
     }
 }
+
+
+
 
 
 
