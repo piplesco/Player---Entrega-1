@@ -88,6 +88,7 @@ public class PlayerMover : MonoBehaviour
         rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         animator.Play("Jump");
     }
+
 }
 
 

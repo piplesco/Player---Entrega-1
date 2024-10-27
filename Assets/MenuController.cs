@@ -26,6 +26,7 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+
     void Update()
     {
         // Abre o cierra el menú con la tecla M
@@ -52,7 +53,7 @@ public class MenuController : MonoBehaviour
     {
         isMenuOpen = !isMenuOpen;
         menuPanel.SetActive(isMenuOpen);
-        Time.timeScale = isMenuOpen ? 0 : 0;
+        Time.timeScale = isMenuOpen ? 0 : 1;
 
         if (isMenuOpen)
         {
