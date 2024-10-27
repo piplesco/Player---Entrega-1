@@ -4112,7 +4112,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  jumpHeight: 3
+  jumpHeight: 1
   turnSmoothTime: 0.1
 --- !u!136 &1115944207
 CapsuleCollider:
