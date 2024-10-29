@@ -10,11 +10,11 @@ public class CameraManager : MonoBehaviour
 
     void Awake()
     {
-        // Crear instancia singleton
+        
         if (Instance == null)
             Instance = this;
 
-        // Encuentra las cámaras en la escena si no se asignan manualmente
+        
         if (firstPersonCamera == null)
             firstPersonCamera = GameObject.Find("PrimeraPersona");
 
@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
 
     public void SwitchCamera(bool isFirstPerson)
     {
-        // Activar o desactivar cámaras según la vista seleccionada
+        
         firstPersonCamera.SetActive(isFirstPerson);
         thirdPersonCamera.SetActive(!isFirstPerson);
     }

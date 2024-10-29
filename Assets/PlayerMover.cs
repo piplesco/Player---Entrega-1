@@ -24,16 +24,15 @@ public class PlayerMover : MonoBehaviour
     void Start()
     {
         rb.isKinematic = false;
-        CameraManager.Instance.SwitchCamera(isFirstPerson); // Iniciar en tercera persona
-    }
+        CameraManager.Instance.SwitchCamera(isFirstPerson); 
 
     void Update()
     {
-        // Cambiar entre primera y tercera persona al presionar la tecla C
+        
         if (Input.GetKeyDown(KeyCode.C))
         {
             isFirstPerson = !isFirstPerson;
-            CameraManager.Instance.SwitchCamera(isFirstPerson); // Cambiar cámara
+            CameraManager.Instance.SwitchCamera(isFirstPerson); 
         }
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -57,7 +56,7 @@ public class PlayerMover : MonoBehaviour
         {
             if (!isFirstPerson)
             {
-                // Rotación en tercera persona
+                
                 float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0, angle, 0);
@@ -67,13 +66,13 @@ public class PlayerMover : MonoBehaviour
             }
             else
             {
-                // Movimiento en primera persona, solo lineal sin rotación
+                
                 Vector3 moveDir = transform.right * x + transform.forward * y;
                 rb.MovePosition(rb.position + moveDir * currentSpeed * Time.deltaTime);
             }
         }
 
-        // Animaciones de movimiento
+        
         animator.SetFloat("VelX", x);
         animator.SetFloat("VelY", y);
 

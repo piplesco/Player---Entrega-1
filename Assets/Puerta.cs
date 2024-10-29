@@ -18,7 +18,7 @@ public class NewBehaviourScript : MonoBehaviour
         angle = transform.eulerAngles.y;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if(Mathf.Round(transform.eulerAngles.y)!=angle){
